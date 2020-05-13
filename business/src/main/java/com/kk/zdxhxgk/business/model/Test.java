@@ -1,15 +1,17 @@
 package com.kk.zdxhxgk.business.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-@Table(name = "test")
+@Table(name="test")
 public class Test {
     @Id
     @GeneratedValue
-    @Column(name = "id")
     private Integer id;
-    @Column(name = "name")
+
     private String name;
 
     public Integer getId() {
