@@ -1,5 +1,6 @@
 package com.kk.zdxhxgk.business.server.serverImpl;
 
+import com.kk.zdxhxgk.business.mapper.TestJpa;
 import com.kk.zdxhxgk.business.mapper.TestMapper;
 import com.kk.zdxhxgk.business.model.Test;
 import com.kk.zdxhxgk.business.model.TestExample;
@@ -21,9 +22,14 @@ public class TestServerImpl implements TestServer {
     private static final Logger LOG = LoggerFactory.getLogger(TestServerImpl.class);
     @Resource
     private TestMapper testMapper;
+    @Resource
+    private TestJpa testJpa;
     @Override
     public List<Test> selectAll() {
         //Jpa
+        List<Test> testList = testJpa.findByNameLike("%托%");
+        System.err.print(testList.get(0).getName());
+
 //
 //        Test test = new Test();
 //        test.setId(1);
@@ -47,6 +53,7 @@ public class TestServerImpl implements TestServer {
         testExample.setOrderByClause("id desc");
         testExample.createCriteria().andIdEqualTo(2);
         return testMapper.selectByExample(testExample);
+
 
     }
 }
