@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: security
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://118.89.113.147:3310/zdxhxgk?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+
+#打印SQL语句
+#  datasource:
+#    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+#    hikari:
+#      password: 123456
+#      username: root
+#    url: jdbc:log4jdbc:mysql://118.89.113.147:3310/zdxhxgk?characterEncoding=UTF8&autoReconnect=true
+
+mybatis-plus:
+mapper-locations: classpath*:/mapper/**Mapper.xml
+
+shiro-redis:
+  enabled: true
+  redis-manager:
+    host: 118.89.113.147:3307
+    password: redis@3307
+shiroedu:
+  jwt:
+    # 加密秘钥
+    secret: f4e2e52034348f86b67cde581c0f9eb5
+    # token有效时长，7天，单位秒
+    expire: 604800
+    header: Authorization
+
+
+server:
+  port: 9001
+  servlet:
+    context-path: /security
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8888/eureka/
+
