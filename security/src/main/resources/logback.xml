@@ -5,8 +5,8 @@
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-<!--            <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5level) %blue(%-50logger{50}:%-4line) %msg%n</Pattern>-->
-            <Pattern>%d{ss.SSS} %highlight(%-5level) %blue(%-30logger{30}:%-4line) %msg%n</Pattern>
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5level) %blue(%-50logger{50}:%-4line) %msg%n</Pattern>
+         <!--   <Pattern>%d{ss.SSS} %highlight(%-5level) %blue(%-30logger{30}:%-4line) %msg%n</Pattern>-->
         </encoder>
     </appender>
 
@@ -40,6 +40,18 @@
             <onMismatch>DENY</onMismatch>
         </filter>
     </appender>
+
+    <!--数据查询日志优化-->
+    <!-- sql 以及耗费的执行时间 -->
+    <logger name="jdbc.sqltiming" level="INFO" additivity="true"></logger>
+    <!-- 执行之后的返回结果 -->
+    <logger name="jdbc.resultsettable" level="INFO"></logger>
+    <!-- 能看到数据库的连接数 -->
+    <logger name="jdbc.connection" level="OFF"></logger>
+    <logger name="jdbc.audit" level="OFF"></logger>
+    <!-- 只有sql -->
+    <logger name="jdbc.sqlonly" level="ON"></logger>
+    <logger name="jdbc.resultset" level="OFF"></logger>
 
     <root level="ERROR">
         <appender-ref ref="ERROR_FILE" />
