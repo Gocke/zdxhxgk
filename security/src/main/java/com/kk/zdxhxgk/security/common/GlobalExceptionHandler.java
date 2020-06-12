@@ -2,6 +2,7 @@ package com.kk.zdxhxgk.security.common;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.ShiroException;
+import org.apache.shiro.authc.ExpiredCredentialsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.net.SocketTimeoutException;
 
 @Slf4j
 @RestControllerAdvice
@@ -44,5 +47,25 @@ public class GlobalExceptionHandler {
         log.error("运行时异常：----------------{}", e);
         return Result.fail(e.getMessage());
     }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(value = ExpiredCredentialsException.class)
+    public Result handler(ExpiredCredentialsException e) {
+        log.error("tocken异常：----------------{}", e);
+        return Result.fail(e.getMessage());
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(value = SocketTimeoutException.class)
+    public Result handler(SocketTimeoutException e) {
+        log.error("数据连接异常：----------------{}", e);
+        return Result.fail(e.getMessage());
+    }
+
+
+
+
+
+
 
 }
